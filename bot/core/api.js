@@ -16,8 +16,6 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
-      console.log(error);
-
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
