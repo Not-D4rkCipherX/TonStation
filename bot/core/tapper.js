@@ -17,6 +17,7 @@ const _isArray = require("../utils/_isArray");
 const FdyTmp = require("fdy-tmp");
 const Fetchers = require("../utils/fetchers");
 const moment = require("moment");
+const { checkUrls } = require("../utils/assetsChecker");
 
 class Tapper {
   constructor(tg_client) {
@@ -301,6 +302,8 @@ class Tapper {
         withCredentials: true,
       });
     }
+
+    await checkUrls(this.bot_name, this.session_name);
     while (true) {
       try {
         const currentTime = _.floor(Date.now() / 1000);
@@ -377,6 +380,7 @@ class Tapper {
         }
 
         if (settings.AUTO_FARM) {
+          await checkUrls(this.bot_name, this.session_name);
           if (
             !_.isEmpty(mine_data?.data) &&
             mine_data?.code == 200 &&
@@ -474,6 +478,7 @@ class Tapper {
           tasks?.message?.toLowerCase() == "success" &&
           settings.AUTO_CLAIM_TASKS
         ) {
+          await checkUrls(this.bot_name, this.session_name);
           const filtered_tasks = taskFilter(tasks?.data, "social");
           if (!_.isEmpty(filtered_tasks)) {
             for (let task of filtered_tasks) {
@@ -534,6 +539,7 @@ class Tapper {
         }
 
         if (!_.isEmpty(balance_data?.data?.balance)) {
+          await checkUrls(this.bot_name, this.session_name);
           for (let balance of balance_data?.data?.balance) {
             logger.info(
               `<ye>[${this.bot_name}]</ye> | ${
