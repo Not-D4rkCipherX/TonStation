@@ -16,6 +16,13 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
+
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -53,6 +60,12 @@ class ApiRequest {
       );
       return true;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       return true;
     }
   }
@@ -64,6 +77,12 @@ class ApiRequest {
       );
       return true;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       return false;
     }
   }
@@ -75,6 +94,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -99,6 +124,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -123,6 +154,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -148,6 +185,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -173,6 +216,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -198,6 +247,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -222,6 +277,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -247,6 +308,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
@@ -272,6 +339,12 @@ class ApiRequest {
       );
       return response?.data;
     } catch (error) {
+      if (error?.response?.status == 404) {
+        logger.error(
+          `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
+        );
+        process.exit(1);
+      }
       if (error?.response?.status >= 500 && error?.response?.status <= 599) {
         return null;
       }
