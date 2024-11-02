@@ -14,6 +14,7 @@ const taskFilter = require("../utils/taskFilter");
 const _isArray = require("../utils/_isArray");
 const Fetchers = require("../utils/fetchers");
 const moment = require("moment");
+const { checkUrls } = require("../utils/assetsChecker");
 
 class NonSessionTapper {
   constructor(query_id, query_name) {
@@ -137,6 +138,7 @@ class NonSessionTapper {
         withCredentials: true,
       });
     }
+    await checkUrls(this.bot_name, this.session_name);
     while (true) {
       try {
         const currentTime = _.floor(Date.now() / 1000);
@@ -210,6 +212,7 @@ class NonSessionTapper {
         }
 
         if (settings.AUTO_FARM) {
+          await checkUrls(this.bot_name, this.session_name);
           if (
             !_.isEmpty(mine_data?.data) &&
             mine_data?.code == 200 &&
@@ -313,15 +316,24 @@ class NonSessionTapper {
           const filtered_tasks = taskFilter(tasks?.data, "social");
           if (!_.isEmpty(filtered_tasks)) {
             for (let task of filtered_tasks) {
+              const totalTime = await checkUrls(
+                this.bot_name,
+                this.session_name
+              );
               const sleep_task = _.random(
                 settings.DELAY_BETWEEN_TASKS[0],
                 settings.DELAY_BETWEEN_TASKS[1]
               );
+              const sleep_time =
+                _.subtract(sleep_task, totalTime) > 0
+                  ? _.subtract(sleep_task, totalTime)
+                  : 0;
+
               logger.info(
-                `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Sleeping for ${sleep_task} seconds before starting task <la>${task?.description}</la>`
+                `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Sleeping for ${sleep_time} seconds before starting task <la>${task?.description}</la>`
               );
 
-              await sleep(sleep_task);
+              await sleep(sleep_time);
 
               const data = {
                 project: task?.project,
@@ -369,6 +381,7 @@ class NonSessionTapper {
         }
 
         if (!_.isEmpty(balance_data?.data?.balance)) {
+          await checkUrls(this.bot_name, this.session_name);
           for (let balance of balance_data?.data?.balance) {
             logger.info(
               `<ye>[${this.bot_name}]</ye> | ${

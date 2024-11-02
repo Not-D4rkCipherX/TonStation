@@ -5,6 +5,7 @@ const axios = require("axios");
 
 async function checkUrls(bot_name, session_name) {
   try {
+    const startTime = Date.now();
     logger.info(
       `<ye>[${bot_name}]</ye> | ${session_name} | Checking for changes from <bl>${gameName}</bl>...`
     );
@@ -44,6 +45,12 @@ async function checkUrls(bot_name, session_name) {
     logger.success(
       `<ye>[${bot_name}]</ye> | ${session_name} | No Changes ✅. The Bot will now continue safely.`
     );
+
+    const endTime = Date.now();
+    const totalTime = (endTime - startTime) / 1000;
+    console.log(totalTime);
+
+    return totalTime;
   } catch (error) {
     logger.error(
       `<ye>[${bot_name}]</ye> | ${session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`

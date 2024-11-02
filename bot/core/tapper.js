@@ -478,19 +478,27 @@ class Tapper {
           tasks?.message?.toLowerCase() == "success" &&
           settings.AUTO_CLAIM_TASKS
         ) {
-          await checkUrls(this.bot_name, this.session_name);
           const filtered_tasks = taskFilter(tasks?.data, "social");
           if (!_.isEmpty(filtered_tasks)) {
             for (let task of filtered_tasks) {
+              const totalTime = await checkUrls(
+                this.bot_name,
+                this.session_name
+              );
               const sleep_task = _.random(
                 settings.DELAY_BETWEEN_TASKS[0],
                 settings.DELAY_BETWEEN_TASKS[1]
               );
+              const sleep_time =
+                _.subtract(sleep_task, totalTime) > 0
+                  ? _.subtract(sleep_task, totalTime)
+                  : 0;
+
               logger.info(
-                `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Sleeping for ${sleep_task} seconds before starting task <la>${task?.description}</la>`
+                `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Sleeping for ${sleep_time} seconds before starting task <la>${task?.description}</la>`
               );
 
-              await sleep(sleep_task);
+              await sleep(sleep_time);
 
               const data = {
                 project: task?.project,
