@@ -48,8 +48,6 @@ async function checkUrls(bot_name, session_name) {
 
     const endTime = Date.now();
     const totalTime = (endTime - startTime) / 1000;
-    console.log(totalTime);
-
     return totalTime;
   } catch (error) {
     logger.error(
