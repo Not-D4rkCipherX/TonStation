@@ -48,6 +48,12 @@ const settings = {
       ? JSON.parse(process.env.DELAY_BETWEEN_PAINTING)
       : [15, 20],
 
+  SLEEP_BETWEEN_NON_THREADS:
+    process.env.SLEEP_BETWEEN_NON_THREADS &&
+    _isArray(process.env.SLEEP_BETWEEN_NON_THREADS)
+      ? JSON.parse(process.env.SLEEP_BETWEEN_NON_THREADS)
+      : [1500, 2000],
+
   DELAY_BETWEEN_STARTING_BOT:
     process.env.DELAY_BETWEEN_STARTING_BOT &&
     _isArray(process.env.DELAY_BETWEEN_STARTING_BOT)
