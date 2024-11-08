@@ -113,6 +113,7 @@ class NonSessionTapper {
     let balance_data;
     let userId;
     let error_in = false;
+    let runCount = 0;
 
     const fetchers = new Fetchers(this.api, this.session_name, this.bot_name);
 
@@ -139,7 +140,7 @@ class NonSessionTapper {
       });
     }
     await checkUrls(this.bot_name, this.session_name);
-    while (true) {
+    while (runCount < settings.RUN_COUNT) {
       try {
         const currentTime = _.floor(Date.now() / 1000);
         if (currentTime - access_token_created_time >= 3590) {
@@ -330,10 +331,14 @@ class NonSessionTapper {
                   : 0;
 
               logger.info(
-                `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Sleeping for ${sleep_time} seconds before starting task <la>${task?.description}</la>`
+                `<ye>[${this.bot_name}]</ye> | ${
+                  this.session_name
+                } | Sleeping for ${_.ceil(
+                  sleep_time
+                )} seconds before starting task <la>${task?.description}</la>`
               );
 
-              await sleep(sleep_time);
+              await sleep(_.ceil(sleep_time));
 
               const data = {
                 project: task?.project,
@@ -403,6 +408,8 @@ class NonSessionTapper {
             `<ye>[${this.bot_name}]</ye> | ${this.session_name} | Sleeping for 30 seconds before retrying...`
           );
           await sleep(30);
+        } else if (settings.USE_NON_THREAD) {
+          runCount++;
         } else {
           let ran_sleep;
           if (_isArray(settings.SLEEP_BETWEEN_REQUESTS)) {

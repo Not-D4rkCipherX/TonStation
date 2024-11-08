@@ -50,6 +50,8 @@ async function checkUrls(bot_name, session_name) {
     const totalTime = (endTime - startTime) / 1000;
     return totalTime;
   } catch (error) {
+    console.log(error);
+
     logger.error(
       `<ye>[${bot_name}]</ye> | ${session_name} | Bot stopped | Detected some changes with <bl>${gameName}</bl> which may cause ban. Contact the developer and report this issue. \nGitHub: <la>https://github.com/FreddyWhest</la> \nTelegram: <la>@roddyfred</la>`
     );

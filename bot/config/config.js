@@ -14,6 +14,21 @@ const settings = {
     ? process.env.AUTO_FARM.toLowerCase() === "true"
     : true,
 
+  MAX_CONCURRENT_ACCOUNT:
+    process.env.MAX_CONCURRENT_ACCOUNT &&
+    /^\d+$/.test(process.env.MAX_CONCURRENT_ACCOUNT)
+      ? parseInt(process.env.MAX_CONCURRENT_ACCOUNT)
+      : 10,
+
+  RUN_COUNT:
+    process.env.RUN_COUNT && /^\d+$/.test(process.env.RUN_COUNT)
+      ? parseInt(process.env.RUN_COUNT)
+      : 1,
+
+  USE_NON_THREAD: process.env.USE_NON_THREAD
+    ? process.env.USE_NON_THREAD.toLowerCase() === "true"
+    : true,
+
   AUTO_CLAIM_TASKS: process.env.AUTO_CLAIM_TASKS
     ? process.env.AUTO_CLAIM_TASKS.toLowerCase() === "true"
     : true,
