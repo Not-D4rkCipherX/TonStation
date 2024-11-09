@@ -73,7 +73,7 @@ const settings = {
     ? process.env.USE_PROXY_FROM_JS_FILE.toLowerCase() === "true"
     : false,
 
-  CAN_CREATE_SESSION: false,
+  CAN_CREATE_SESSION: true,
 };
 
 module.exports = settings;
